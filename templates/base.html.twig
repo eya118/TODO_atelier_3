@@ -1,0 +1,36 @@
+{#
+
+{%  set test='test2' %}
+{{ test }}
+{%  set tab =[ {
+"fname" :"line",
+"lastname" :"bin"}]
+%}
+{{ var }}
+#}
+{#{{ tab['fname'] }}
+{%  for element in  tab  %}
+<li> {{ element }}</li>
+{% endfor %}#}{#
+
+<table>
+    <tr>id</tr>
+    <tr>name</tr>
+    <tr>email</tr>
+    {%  if persons is not empty  %}
+    {% for p in persons%}
+
+        <tr>{{p.id  }}</tr>
+        <tr>{{ p.name }}</tr>
+
+        <tr>{{ p.email }}</tr>
+{{ persons|length }}
+    {% endfor %}
+
+    {%  else %}
+    <h1>table is empty</h1>
+    {%  endif %}
+
+</table>
+<a href="{{ path('app_test_twig',{'name':"v",'id',"1"}) }}" >go to conotroller</a>
+#}

@@ -1,0 +1,71 @@
+<html>
+<table border="1"><thead>
+    <tr>
+<td>ref</td>
+    <td>Titre</td>
+    <td>Description</td>
+    <td>participation</td>
+    </tr>
+    </thead>
+    <tbody>
+{% for element in list %}
+
+    <tr>
+  <td> {{ element.ref|upper }}</td>
+   <td> {{ element.Titre }}</td>
+    <td> {{ element.Description }}</td>
+
+        <td>{% if element.nb_participants==0 %}
+{#
+            <a href="{{ path('detail_route',{'nom_formation':element.Titre})}}"> <input type="button" value="participer"></a>
+#}
+                <input type="button" value="participer">
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<h4 style="color: #ffb30f">nombre de formation :{{ list|length }}</h4>
+<table border="1"><thead>
+    <tr>
+        <td>ref</td>
+        <td>Titre</td>
+        <td>Description</td>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for element in list %}
+    {%  if  element.Description=="formation theorique" %}
+
+
+    <tr>
+        <td> {{ element.ref|upper }}</td>
+        <td> {{ element.Titre }}</td>
+        <td> {{ element.Description }}</td>
+
+    </tr>
+    </tbody></table>
+    {%  endif %}
+{% endfor %}
+{%  set bigger=0 %}
+{% for element in list %}
+    {%  if  element.nb_participants>bigger %}
+        {% set bigger = element.nb_participants %}
+
+    {%  endif %}
+{% endfor %}
+<p style="color: #5eb5e0">la formation ayant le plus grand nombre de participants :
+    {{ bigger }}</p>
+{% set number_of_participants=0 %}
+{% for element in list %}
+    {% if list|length==0 %}
+    <h1 style="color: #B0413E">le tableau est vide </h1>
+    {% else %}
+    {% set number_of_participants=number_of_participants+element.nb_participants %}
+{% endif %}
+{% endfor %}
+<h4 style="color: #41d038"> le nombre total de participants dans toutes les formations : {{ number_of_participants }}</h4>
+
+</html>
